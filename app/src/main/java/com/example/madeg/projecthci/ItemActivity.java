@@ -18,7 +18,7 @@ public class ItemActivity extends AppCompatActivity {
    TabLayout tabLayout;
     ViewPager viewPager;
     viewPagerAdapter adapter;
-    ImageButton btnBack;
+    ImageButton btnBack, logout;
 //
 //    @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,7 @@ public class ItemActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.viewPager);
         btnBack = findViewById(R.id.btnBack);
+        logout = findViewById(R.id.btnLogout);
         adapter = new viewPagerAdapter(getSupportFragmentManager());
 
         adapter.add(new AllBreadFragment(), "All Bread");
