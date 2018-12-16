@@ -36,10 +36,10 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(HomeActivity.this, ItemActivity.class);
-                startActivity(i);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("username", "null");
                 editor.commit();
+                startActivity(i);
             }
         });
 

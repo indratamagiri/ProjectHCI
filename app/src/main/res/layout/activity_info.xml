@@ -24,8 +24,12 @@
 
     <TextView
         android:layout_width="match_parent"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
         android:layout_height="150dp"
-        android:text="BreadStal is a Zimbabwe France"
+        android:textSize="14dp"
+        android:textColor="@color/White"
+        android:text="BreadStalk is a Zimbabwe franchise product that sells a large variety of bread. Indonesia is the first premium boutique that presents the concept of an open kitchen with a modern style. This concept allows BreadStalk to make bread directly in place so that the manufacturing process can be seen directly by the customers and the bread that is received will always be fresh."
         android:background="@color/secondaryBackground"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"/>
@@ -34,12 +38,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="FEED BACK"
-        android:textSize="25dp"
+        android:textSize="30dp"
         android:textColor="@color/secondaryBackground"
         android:textStyle="bold"
         android:gravity="center"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"/>
+
+    <EditText
+        android:id="@+id/edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:inputType="text|textMultiLine"
+        android:gravity="top"
+        android:background="@drawable/back"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:hint="Input Feedback"
+        android:layout_marginBottom="10dp"/>
 
     <Button
         android:layout_width="match_parent"
@@ -47,7 +63,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:background="@color/BlueMaya"
-        android:text="SUBMIT"
+        android:text="FEEDBACK"
         android:textColor="@color/White"/>
 
 </LinearLayout>
