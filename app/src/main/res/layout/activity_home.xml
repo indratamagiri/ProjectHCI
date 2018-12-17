@@ -29,10 +29,10 @@
             android:layout_marginBottom="10dp"/>
 
 
-        <ImageView
-            android:id="@+id/ourProduct"
-            android:layout_width="match_parent"
-            android:layout_height="250dp" />
+       <ViewFlipper
+           android:layout_width="match_parent"
+           android:layout_height="250dp"
+           android:id="@+id/flipper"></ViewFlipper>
 
         <LinearLayout
             android:layout_width="match_parent"
