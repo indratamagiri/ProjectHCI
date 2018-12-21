@@ -12,7 +12,7 @@ public class DetailActivity extends AppCompatActivity {
 
     TextView name, des;
     ImageView imageView;
-    ImageButton btnBack;
+    ImageButton btnBack, logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +21,7 @@ public class DetailActivity extends AppCompatActivity {
         des = findViewById(R.id.DetailDes);
         imageView = findViewById(R.id.DetailImage);
         btnBack = findViewById(R.id.btnBack);
+        logout = findViewById(R.id.btnLogout);
 
         Intent intent = getIntent();
         String itemName = intent.getStringExtra("NAME_ITEM") ;
@@ -31,6 +32,15 @@ public class DetailActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetailActivity.this, MainActivity.class);
+                startActivity(intent);
                 finish();
             }
         });

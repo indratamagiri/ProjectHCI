@@ -3,6 +3,7 @@ package com.example.madeg.projecthci;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -13,13 +14,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class HomeActivity extends AppCompatActivity {
     TextView textWeloome;
     ImageButton exit;
     Button AboutUs;
     Toolbar toolbar;
     SharedPreferences sharedPreferences;
-    ViewFlipper viewFlipper;
+    ViewPager viewPager;
+    ViewAdapter viewPagerAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +33,11 @@ public class HomeActivity extends AppCompatActivity {
         textWeloome = findViewById(R.id.welcomeHome);
         toolbar = findViewById(R.id.toolbarHome);
         AboutUs = findViewById(R.id.buttonAbout);
-        viewFlipper = findViewById(R.id.flipper);
+        viewPager = findViewById(R.id.viewPager);
+        viewPagerAdapter = new ViewAdapter(getApplicationContext());
+        viewPager.setAdapter(viewPagerAdapter);
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new MyTask(), 3000, 3000);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -37,7 +47,6 @@ public class HomeActivity extends AppCompatActivity {
 
         textWeloome.setText("Welcome " +sharedPreferences.getString("username", "null"));
 
-        int images[] = {R.drawable.crazy_dough_stuffed_bread, R.drawable.french_bread, R.drawable.white_bread, R.drawable.scali_bread};
 
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +54,7 @@ public class HomeActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("username", "null");
                 editor.commit();
-                finish();
+                finishAffinity();
             }
         });
 
@@ -57,27 +66,30 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        for (int image: images){
-            flipperImage(image);
-        }
-        viewFlipper.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(HomeActivity.this, ItemActivity.class);
-                startActivity(i);
-            }
-        });
+
     }
 
-    public void flipperImage(int image){
-        ImageView imageView = new ImageView(this);
-        imageView.setBackgroundResource(image);
+    class MyTask extends TimerTask {
 
-        viewFlipper.addView(imageView);
-        viewFlipper.setFlipInterval(3000);
-        viewFlipper.setAutoStart(true);
+        @Override
+        public void run() {
+            HomeActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if(viewPager.getCurrentItem() == 0){
+                        viewPager.setCurrentItem(1);
+                    }else if(viewPager.getCurrentItem() == 1){
+                        viewPager.setCurrentItem(2);
+                    }else if(viewPager.getCurrentItem() == 2){
+                        viewPager.setCurrentItem(3);
+                    }else if(viewPager.getCurrentItem() == 3){
+                        viewPager.setCurrentItem(4);
+                    }else {
+                        viewPager.setCurrentItem(0);
+                    }
 
-        viewFlipper.setInAnimation(this, android.R.anim.slide_in_left);
-        viewFlipper.setOutAnimation(this, android.R.anim.slide_out_right);
+                }
+            });
+        }
     }
 }
