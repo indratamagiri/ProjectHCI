@@ -1,8 +1,10 @@
 package com.example.madeg.projecthci;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     EditText email, password;
     Button login;
     String emailUser, passwordUser;
+    AlertDialog.Builder alertBuilder;
+    String mes ="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +34,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 emailUser = email.getText().toString().trim();
                 passwordUser = password.getText().toString().trim();
-
+                mes = "";
                 if (!emailUser.isEmpty() && !passwordUser.isEmpty()) {
-                    if (isValidEmailId(emailUser)) {
+                    if (emailUser.length() > 6) {
                         SharedPreferences sharedPreferences = getSharedPreferences("dataUser", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("username", emailUser);
@@ -41,23 +45,25 @@ public class MainActivity extends AppCompatActivity {
                         Intent i = new Intent(MainActivity.this, HomeActivity.class);
                         startActivity(i);
                     }else {
-                        Toast.makeText(getApplicationContext(), "you must input email", Toast.LENGTH_SHORT).show();
+                        mes = "Username must more that 6";
                     }
                 }else {
-                    Toast.makeText(getApplicationContext(), "Email and Password must be input", Toast.LENGTH_SHORT).show();
+                    mes = "Username and Password must be field";
+                }
+                if (mes.equals("")){
+                    alertBuilder = new AlertDialog.Builder(MainActivity.this);
+                    alertBuilder.setMessage(mes);
+                    alertBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    alertBuilder.show();
                 }
             }
         });
 
 
-    }
-    private boolean isValidEmailId(String email){
-
-        return Pattern.compile("^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
-                + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
-                + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
-                + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
-                + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
-                + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$").matcher(email).matches();
     }
 }
