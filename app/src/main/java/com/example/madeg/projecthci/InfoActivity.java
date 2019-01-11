@@ -6,6 +6,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toolbar;
 
@@ -19,6 +21,8 @@ public class InfoActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbarAbout);
         exit = findViewById(R.id.btnLogout);
         back = findViewById(R.id.btnBack);
+        Button feedback = findViewById(R.id.BtnFeedBack);
+        final EditText inputFeedback = findViewById(R.id.edit_text);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
@@ -34,6 +38,19 @@ public class InfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String input = inputFeedback.getText().toString();
+                if (input.length() < 25){
+
+                }else{
+
+                }
+
             }
         });
     }

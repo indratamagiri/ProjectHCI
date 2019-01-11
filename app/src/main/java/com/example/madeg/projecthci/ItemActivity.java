@@ -1,6 +1,8 @@
 package com.example.madeg.projecthci;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +36,8 @@ public class ItemActivity extends AppCompatActivity {
         adapter.add(new AllBreadFragment(), "All Bread");
         adapter.add(new PopularFragment(), "Popular Bread");
 
+        final SharedPreferences sharedPreferences = getSharedPreferences("dataUser", Context.MODE_PRIVATE);
+
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
@@ -47,9 +51,10 @@ public class ItemActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ItemActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("username", "null");
+                editor.commit();
+                finishAffinity();
             }
         });
     }

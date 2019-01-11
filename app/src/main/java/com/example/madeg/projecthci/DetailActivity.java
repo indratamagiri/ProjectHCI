@@ -1,6 +1,8 @@
 package com.example.madeg.projecthci;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +31,8 @@ public class DetailActivity extends AppCompatActivity {
         Integer image = intent.getIntExtra("ITEM_IMAGE", 0);
         imageView.setImageResource(image);
 
+        final SharedPreferences sharedPreferences = getSharedPreferences("dataUser", Context.MODE_PRIVATE);
+
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,9 +43,10 @@ public class DetailActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DetailActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("username", "null");
+                editor.commit();
+                finishAffinity();
             }
         });
     }

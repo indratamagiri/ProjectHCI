@@ -37,7 +37,7 @@ public class HomeActivity extends AppCompatActivity {
         viewPagerAdapter = new ViewAdapter(getApplicationContext());
         viewPager.setAdapter(viewPagerAdapter);
         Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new MyTask(), 3000, 3000);
+        timer.scheduleAtFixedRate(new MyTask(), 5000, 5000);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
