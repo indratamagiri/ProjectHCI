@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -19,11 +20,15 @@ import android.widget.TextView;
  */
 public class PopularFragment extends Fragment {
 
-    private String names[] = {"Crazy Dough Stuffed Bread", "French Bread", "Garlic Bread", "Iranian Bread"
-                                , "Monkey Bread", "Scali Bread", "Sourdough Bread", "White Bread"};
-    Integer images[] = {R.drawable.crazy_dough_stuffed_bread, R.drawable.french_bread, R.drawable.garlic_bread, R.drawable.iranian_bread,
-                        R.drawable.monkey_bread, R.drawable.scali_bread, R.drawable.sourdough_bread, R.drawable.white_bread};
-    String details[] = {};
+    private String names[] = {"White Bread", "French Bread", "Garlic Bread"
+                                , "Monkey Bread", "Sourdough Bread"};
+    Integer images[] = {R.drawable.white_bread, R.drawable.french_bread, R.drawable.garlic_bread, R.drawable.monkey_bread,
+                        R.drawable.sourdough_bread};
+    String details[] = {"Healthy, filling and wholesome, Whole Wheat loafs are essential to anyone's self-concious ",
+                        "Warm, crunchy and fluffy french Baguette, servable with anything, delightful just by itsel",
+                        "Italian Bread covered with garlic, olive oil and butter, topped it off with chives. A great side d",
+                        "It is a soft, sweet, sticky pastry sprinkled with cinnamon served for breakfast or as a treat.",
+                        "Bread unlike any other, with a mildly sour taste great for your main dish"};
     View view;
     ListView listView;
 
@@ -47,6 +52,7 @@ public class PopularFragment extends Fragment {
                 Intent intent = new Intent(view.getContext(), DetailActivity.class);
                 intent.putExtra("NAME_ITEM", names[position]);
                 intent.putExtra("ITEM_IMAGE", images[position]);
+                intent.putExtra("ITEM_DES", details[position]);
                 startActivity(intent);
             }
         });
@@ -72,12 +78,13 @@ public class PopularFragment extends Fragment {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            view = getLayoutInflater().inflate(R.layout.all_item, null);
-            TextView textView = view.findViewById(R.id.itemName);
-            ImageView imageView = view.findViewById(R.id.imageItem);
-
+            view = getLayoutInflater().inflate(R.layout.popular_item, null);
+            TextView textView = view.findViewById(R.id.itemNamePopular);
+            ImageView imageView = view.findViewById(R.id.imageItemPopular);
+            TextView textDes = view.findViewById(R.id.itemDesPopular);
             textView.setText(names[position]);
             imageView.setImageResource(images[position]);
+            textDes.setText(details[position]);
             return view;
         }
     }

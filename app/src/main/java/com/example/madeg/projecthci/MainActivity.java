@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 }else {
                     mes = "Username and Password must be field";
                 }
-                if (mes.equals("")){
+                if (!mes.equals("")){
                     alertBuilder = new AlertDialog.Builder(MainActivity.this);
                     alertBuilder.setMessage(mes);
                     alertBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {

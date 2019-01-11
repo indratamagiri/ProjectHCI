@@ -3,6 +3,7 @@ package com.example.madeg.projecthci;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.content.IntentCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -54,7 +55,9 @@ public class HomeActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("username", "null");
                 editor.commit();
-                finishAffinity();
+                Intent i = new Intent(HomeActivity.this, MainActivity.class);
+                startActivity(i);
+                finish();
             }
         });
 

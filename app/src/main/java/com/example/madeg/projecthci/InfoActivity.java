@@ -37,7 +37,7 @@ public class InfoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(InfoActivity.this, MainActivity.class);
                 startActivity(intent);
-                finish();finish();
+                finish();
             }
         });
         back.setOnClickListener(new View.OnClickListener() {

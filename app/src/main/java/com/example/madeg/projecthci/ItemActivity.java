@@ -54,7 +54,9 @@ public class ItemActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("username", "null");
                 editor.commit();
-                finishAffinity();
+                Intent i = new Intent(ItemActivity.this, MainActivity.class);
+                startActivity(i);
+                finish();
             }
         });
     }

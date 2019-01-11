@@ -30,6 +30,8 @@ public class DetailActivity extends AppCompatActivity {
         name.setText(itemName);
         Integer image = intent.getIntExtra("ITEM_IMAGE", 0);
         imageView.setImageResource(image);
+        String detail = intent.getStringExtra("ITEM_DES");
+        des.setText(detail);
 
         final SharedPreferences sharedPreferences = getSharedPreferences("dataUser", Context.MODE_PRIVATE);
 
@@ -46,7 +48,9 @@ public class DetailActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("username", "null");
                 editor.commit();
-                finishAffinity();
+                Intent i = new Intent(DetailActivity.this, MainActivity.class);
+                startActivity(i);
+                finish();
             }
         });
     }
